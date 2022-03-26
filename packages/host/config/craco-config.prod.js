@@ -6,11 +6,11 @@ const domain = process.env.PRODUCTION_DOMAIN;
 module.exports = {
   output: {
     filename: "[name].[contenthash].js",
-    publicPath: "/container/latest/",
+    publicPath: "/host/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "container",
+      name: "host",
       remotes: {
         marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
         auth: `auth@${domain}/auth/latest/remoteEntry.js`,
