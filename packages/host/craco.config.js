@@ -1,44 +1,21 @@
-const ModuleFederation = require("webpack/lib/container/ModuleFederationPlugin");
-const deps = require("./package.json").dependencies;
+const { whenDev } = require("@craco/craco");
+
+const devConfig = require("./config/craco-config.dev");
+const prodConfig = require("./config/craco-config.prod");
+
+function getConfig(key, unmetValue) {
+  return whenDev(
+    () => devConfig[key] || unmetValue,
+    prodConfig[key] || unmetValue
+  );
+}
 
 module.exports = {
-  devServer: {
-    port: 8080,
-    historyApiFallback: {
-      index: "/index.html",
-    },
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "*",
-      "Access-Control-Allow-Headers": "*",
-    },
-  },
+  devServer: getConfig("devServer", {}),
   webpack: {
     configure: {
-      output: {
-        publicPath: "http://localhost:8080/",
-      },
-      plugins: [
-        new ModuleFederation({
-          name: "host",
-          remotes: {
-            marketing: "marketing@http://localhost:8081/remoteEntry.js",
-            auth: "auth@http://localhost:8082/remoteEntry.js",
-            dashboard: "dashboard@http://localhost:8083/remoteEntry.js",
-          },
-          shared: {
-            ...deps,
-            react: {
-              singleton: true,
-              requiredVersion: deps["react"],
-            },
-            "react-dom": {
-              singleton: true,
-              requiredVersion: deps["react-dom"],
-            },
-          },
-        }),
-      ],
+      output: getConfig("output", {}),
+      plugins: getConfig("plugins", []),
     },
   },
 };
