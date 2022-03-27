@@ -19,9 +19,10 @@ jobs:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
 
     steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run build
+      - name: Install dependencies & Build
+        uses: actions/checkout@v2
+        run: npm install
+        run: npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
