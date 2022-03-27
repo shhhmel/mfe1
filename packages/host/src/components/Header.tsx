@@ -79,7 +79,7 @@ export default function Header({ isSignedIn, onSignOut }: any) {
             component={RouterLink}
             to="/"
           >
-            NEW CRA App !
+            NEW CRA App
           </Typography>
           <Button
             color="primary"
