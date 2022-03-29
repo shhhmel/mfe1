@@ -81,16 +81,28 @@ export default function Header({ isSignedIn, onSignOut }: any) {
           >
             NEW CRA App
           </Typography>
-          <Button
-            color="primary"
-            variant="outlined"
-            className={classes.link}
-            component={RouterLink}
-            to={isSignedIn ? "/" : "/auth/signin"}
-            onClick={onClick}
-          >
-            {isSignedIn ? "Logout" : "Login"}
-          </Button>
+          <div>
+            <Button
+              color="primary"
+              variant="outlined"
+              className={classes.link}
+              component={RouterLink}
+              to={"/users"}
+              onClick={onClick}
+            >
+              Users
+            </Button>
+            <Button
+              color="primary"
+              variant="outlined"
+              className={classes.link}
+              component={RouterLink}
+              to={isSignedIn ? "/" : "/auth/signin"}
+              onClick={onClick}
+            >
+              {isSignedIn ? "Logout" : "Login"}
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
     </React.Fragment>

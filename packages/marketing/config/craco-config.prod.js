@@ -12,6 +12,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./MarketingApp": "./src/bootstrap",
+        "./UsersCollection": "./src/components/UsersCollection",
       },
       shared: {
         ...dependencies,

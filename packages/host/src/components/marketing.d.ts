@@ -6,3 +6,9 @@ declare module "marketing/MarketingApp" {
     options: any
   ) => any;
 }
+
+declare module "marketing/UsersCollection" {
+  const UsersCollection: React.ComponentType<{ name: string }>;
+
+  export default UsersCollection;
+}
