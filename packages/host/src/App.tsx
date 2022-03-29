@@ -45,9 +45,18 @@ export default function App() {
               </AsyncLoader>
             </Route>
             <Route path="/users">
-              <AsyncLoader>
-                <UsersCollectionLazy name={"Users collection"} />
-              </AsyncLoader>
+              <>
+                <h1
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  This is heading from Host.
+                </h1>
+                <AsyncLoader>
+                  <UsersCollectionLazy name={"Users collection"} />
+                </AsyncLoader>
+              </>
             </Route>
             <Route path="/">
               <AsyncLoader>

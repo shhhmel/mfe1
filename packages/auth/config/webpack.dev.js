@@ -12,6 +12,11 @@ const devConfig = {
   devServer: {
     port: 8082,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "*",
+    },
   },
   plugins: [
     new ModuleFederationPlugin({
