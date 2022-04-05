@@ -7,6 +7,7 @@ import {
 
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import AuthObservables from "./core/AuthObservables";
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "au",
@@ -17,6 +18,7 @@ export default ({ history, onSignIn }) => {
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
+          <AuthObservables />
           <Switch>
             <Route path="/auth/signin">
               <Signin onSignIn={onSignIn} />

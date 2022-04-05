@@ -8,7 +8,7 @@ export default function AuthApp({ onSignIn }: any) {
   const history = useHistory();
 
   useEffect(() => {
-    const { onParentNavigate } = mount(ref.current, {
+    const { onUnmount } = mount(ref.current, {
       initialPath: history.location.pathname,
       onNavigate: ({ pathname: nextPathName }: any) => {
         const pathname = history.location;
@@ -20,7 +20,10 @@ export default function AuthApp({ onSignIn }: any) {
       onSignIn,
     });
 
-    history.listen(onParentNavigate);
+    return () => {
+      onUnmount();
+      // TODO: Try to unmount here
+    };
   });
 
   return <div ref={ref}></div>;

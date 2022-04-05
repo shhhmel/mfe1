@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { Route, Switch, Router, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
+import HostObservables from "./core/host-observables";
 import Header from "./components/Header";
 import Progress from "./components/Progress";
 import AsyncLoader from "./components/AsyncLoader";
@@ -26,6 +27,7 @@ export default function App() {
 
   return (
     <Router history={history}>
+      <HostObservables />
       <div>
         <Header
           isSignedIn={isSignedIn}

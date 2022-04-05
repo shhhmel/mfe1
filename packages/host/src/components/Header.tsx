@@ -88,7 +88,6 @@ export default function Header({ isSignedIn, onSignOut }: any) {
               className={classes.link}
               component={RouterLink}
               to={"/users"}
-              onClick={onClick}
             >
               Users
             </Button>
