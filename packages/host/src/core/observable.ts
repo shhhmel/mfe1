@@ -16,8 +16,8 @@ export class Observable<T = any> {
       window[SHARED] = {
         [EVENTS]: {},
         [CHANNELS]: {},
-        getObservable: (namespace, schema) => {
-          return new Observable(namespace, schema);
+        getRemoteObservable: (namespace, schema) => {
+          return createRemoteObservalbe(namespace, schema);
         },
       };
     }
@@ -186,4 +186,25 @@ export class SchemaMismatchError extends Error {
     }
     this.name = "SchemaMismatchError";
   }
+}
+
+function createRemoteObservalbe(namespace: string, schema: Object) {
+  const observable = new Observable(namespace, schema);
+  const subscriptions = new Set<any>();
+
+  return {
+    observable,
+    subscribe: (subscription: Observer<any>) => {
+      subscriptions.add(subscription);
+      observable.subscribe(subscription);
+    },
+    publish: (data: any) => {
+      observable.publish(data);
+    },
+    usubscribeAll: () => {
+      subscriptions.forEach((subscription: Observer<any>) => {
+        observable.unsubscribe(subscription);
+      });
+    },
+  };
 }

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { createMemoryHistory, createBrowserHistory } from "history";
 
 import App from "./App";
-import { observables } from "./core/observable.hooks";
+import { hostNavigateObservable } from "./core/observable.hooks";
 
 const mount = (el, { defaultHistory, initialPath, onSignIn }) => {
   const history =
@@ -16,10 +16,8 @@ const mount = (el, { defaultHistory, initialPath, onSignIn }) => {
 
   return {
     onUnmount: () => {
-      console.log("onUnmount");
-      // subscribers["host:navigate"].forEach((subscriber) => {
-      //   hostNavigateObservable.unsubscribe(subscriber);
-      // });
+      console.log("AuthApp onUnmount");
+      hostNavigateObservable?.usubscribeAll();
     },
   };
 };

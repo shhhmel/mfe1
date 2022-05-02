@@ -26,12 +26,22 @@ export interface Observable<T = any> {
   clear(): void;
 }
 
+export interface RemoteObservable<T = any> {
+  observable: Observable<T>;
+  subscribe(subscription: Observer<T>): void;
+  publish(data: T): void;
+  usubscribeAll(): void;
+}
+
 declare global {
   interface Window {
     __shared__: {
       __events__: Record<string, Events>;
       __channels__: Record<string, Channels>;
-      getObservable: (namespace: string, schema: Object) => Observable;
+      getRemoteObservable: (
+        namespace: string,
+        schema: Object
+      ) => RemoteObservable;
     };
   }
 }
